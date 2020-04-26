@@ -11,12 +11,20 @@ import (
 
 func Router() *mux.Router {
 	router := mux.NewRouter()
-	router.HandleFunc("/create", CreateEndpoint).Methods("GET")
+	router.HandleFunc("/list", ListEndpoint).Methods("GET")
+	router.HandleFunc("/health", HealthEndpoint).Methods("GET")
 	return router
 }
 
-func TestCreateEndpoint(t *testing.T) {
-	request, _ := http.NewRequest("GET", "/create", nil)
+func TestListEndpoint(t *testing.T) {
+	request, _ := http.NewRequest("GET", "/list", nil)
+	response := httptest.NewRecorder()
+	Router().ServeHTTP(response, request)
+	assert.Equal(t, 200, response.Code, "OK response is expected")
+}
+
+func TestHealthEndpoint(t *testing.T) {
+	request, _ := http.NewRequest("GET", "/health", nil)
 	response := httptest.NewRecorder()
 	Router().ServeHTTP(response, request)
 	assert.Equal(t, 200, response.Code, "OK response is expected")

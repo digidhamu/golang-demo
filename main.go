@@ -14,7 +14,7 @@ func ListEndpoint(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Accessed /list")
 }
 
-func HealthCheck(w http.ResponseWriter, req *http.Request) {
+func HealthEndpoint(w http.ResponseWriter, req *http.Request) {
 	w.WriteHeader(200)
 	w.Write([]byte("OK"))
 }
@@ -22,7 +22,7 @@ func HealthCheck(w http.ResponseWriter, req *http.Request) {
 func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/list", ListEndpoint).Methods("GET")
-	router.HandleFunc("/health", HealthCheck).Methods("GET")
+	router.HandleFunc("/health", HealthEndpoint).Methods("GET")
 
 	fmt.Println("Server is starting on http://:8080/list")
 
