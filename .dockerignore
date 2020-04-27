@@ -1,3 +1,11 @@
 sonar-project.properties
 main
 main_test.go
+coverage.out
+build-docker.sh
+build-local.sh
+ERROR.md
+README.md
+start-docker.sh
+start-local.sh
+start-test.sh
